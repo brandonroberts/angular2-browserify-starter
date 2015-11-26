@@ -1,0 +1,33 @@
+{
+  "name": "angular2-browserify-starter",
+  "version": "0.1.0",
+  "description": "An Angular 2 starter app using Browserify for bundling",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "babelify": "~6.4.0",
+    "connect-history-api-fallback": "^1.1.0",
+    "browserify": "~9.0.8",
+    "gulp": "^3.9.0",
+    "gulp-connect": "~2.2.0",
+    "gulp-sourcemaps": "~1.5.2",
+    "stringify": "~3.1.0",
+    "tsify": "^0.12.2",
+    "vinyl-buffer": "~1.0.0",
+    "vinyl-source-stream": "~1.1.0",
+    "vinyl-transform": "~1.0.0"
+  },
+  "scripts": {
+    "start": "gulp"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-alpha.46",
+    "reflect-metadata": "^0.1.2",
+    "zone.js": "^0.5.8"
+  },
+  "aliasify": {
+    "aliases": {
+      "app": "./app"
+    }
+   }
+}
