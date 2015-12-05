@@ -23,7 +23,7 @@ gulp.task('default', ['connect', 'bundle', 'assets', 'html'], function() {
 
 gulp.task('bundle', function() {
     browserify('./app/bootstrap.ts', {
-      debug: true, extensions: ['.ts', '.js']
+      debug: false, extensions: ['.ts', '.js']
     })
     .plugin(tsify)
     .transform(babelify.configure({stage: 0, extensions: ['.ts', '.js']}))
