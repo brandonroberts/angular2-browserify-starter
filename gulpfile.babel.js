@@ -10,6 +10,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import history from 'connect-history-api-fallback';
 import tsify from 'tsify';
 import stringify from 'stringify';
+import watchify from 'watchify';
 
 function handleError(type, error) {
   console.log(`${type} error: ${error.message}`);
@@ -22,26 +23,33 @@ gulp.task('default', ['connect', 'bundle', 'assets', 'html'], function() {
 });
 
 gulp.task('bundle', function() {
-    browserify('./app/bootstrap.ts', {
+    let b = browserify('./app/bootstrap.ts', {
       debug: false, extensions: ['.ts', '.js']
     })
     .plugin(tsify)
     .transform(babelify.configure({stage: 0, extensions: ['.ts', '.js']}))
-    .transform(stringify(['.html']))
-    .bundle()
-    .on("error", (error) => {
-      handleError('Bundle', error);
-      this.emit('end');
-    })
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sourcemaps.write('./'))
-    .on("error", (error) => {
-      handleError('Sourcemaps', error);
-      this.emit('end');
-    })
-    .pipe(gulp.dest('./dist/'));
+    .transform(stringify(['.html']));
+
+    b = watchify(b);
+
+    function bundle() {
+      b.bundle()
+      .on("error", (error) => {
+        handleError('Bundle', error);
+        this.emit('end');
+      })
+      .pipe(source('bundle.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(sourcemaps.write('./'))
+      .on("error", (error) => {
+        handleError('Sourcemaps', error);
+        this.emit('end');
+      })
+      .pipe(gulp.dest('./dist/'));
+    }
+
+    return bundle();
 });
 
 gulp.task('html', function() {

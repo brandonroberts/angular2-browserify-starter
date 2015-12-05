@@ -6,8 +6,8 @@
   "devDependencies": {
     "babel": "^5.8.29",
     "babelify": "~6.4.0",
-    "connect-history-api-fallback": "^1.1.0",
     "browserify": "~9.0.8",
+    "connect-history-api-fallback": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-connect": "~2.2.0",
     "gulp-sourcemaps": "~1.5.2",
@@ -15,7 +15,8 @@
     "tsify": "^0.12.2",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0",
-    "vinyl-transform": "~1.0.0"
+    "vinyl-transform": "~1.0.0",
+    "watchify": "^3.6.1"
   },
   "scripts": {
     "start": "gulp"
