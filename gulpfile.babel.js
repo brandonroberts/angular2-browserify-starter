@@ -19,14 +19,14 @@ function handleError(type, error) {
 gulp.task('default', ['connect', 'bundle', 'assets', 'html'], function() {
   gulp.watch(['./app/**/*.ts', './app/**/*.html'], ['bundle']);
   gulp.watch(['./assets/**'], ['assets']);
-  gulp.watch(['./app/views/**'], ['html']);
+  gulp.watch(['./views/**'], ['html']);
 });
 
 gulp.task('bundle', function() {
     let b = browserify('./app/bootstrap.ts', {
       debug: false, extensions: ['.ts', '.js']
     })
-    .plugin(tsify)
+    //.plugin(tsify)
     .transform(babelify.configure({stage: 0, extensions: ['.ts', '.js']}))
     .transform(stringify(['.html']));
 
